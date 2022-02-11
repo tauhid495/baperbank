@@ -1,30 +1,36 @@
+
+function getInputValue(inputid) {
+    const inputField = document.getElementById(inputid);
+    const inputAmountText = inputField.value;
+    const amountValue = parseFloat(inputAmountText);
+
+    inputField.value = '';
+    return amountValue;
+}
+
+
 document.getElementById('deposit-btn').addEventListener('click', function () {
-    const depositInput = document.getElementById('deposit-input');
-    const newDepositext = depositInput.value;
-    const newDepositAmount = parseFloat(newDepositext);
+    const depositAmount = getInputValue('deposit-input');
     // deposit total 
     const depositTotal = document.getElementById('deposit-total');
     const previousDeposittext = depositTotal.innerText;
     const previousDepositAmount = parseFloat(previousDeposittext);
-    const newDepositTotal = previousDepositAmount + newDepositAmount;
+    const newDepositTotal = previousDepositAmount + depositAmount;
     depositTotal.innerText = newDepositTotal;
 
     // update balance
     const balanceTotal = document.getElementById('balance-total');
     const balanceText = balanceTotal.innerText;
     const previousTotalBalance = parseFloat(balanceText);
-    const newBalanceTotal = previousTotalBalance + newDepositAmount;
+    const newBalanceTotal = previousTotalBalance + depositAmount;
     balanceTotal.innerText = newBalanceTotal;
-
-    // clear field 
-    depositInput.value = '';
 })
 
 // withdrow sec 
 document.getElementById('withdrow-btn').addEventListener('click', function () {
-    const withdrawInput = document.getElementById('withdrow-input');
-    newWithdrowtext = withdrawInput.value;
-    newWithdrowAmount = parseFloat(newWithdrowtext);
+    // const withdrawInput = document.getElementById('withdrow-input');
+    // newWithdrowtext = withdrawInput.value;
+    const newWithdrowAmount = getInputValue('withdrow-input');
 
     // withdrow total 
     const withdrowText = document.getElementById('withdraw-total');
@@ -38,7 +44,8 @@ document.getElementById('withdrow-btn').addEventListener('click', function () {
     const previousTotalBalance = parseFloat(balanceText);
     const newBalanceTotal = previousTotalBalance - newWithdrowAmount;
     balanceTotal.innerText = newBalanceTotal;
-
-    withdrawInput.value = '';
-
 })
+
+
+
+
